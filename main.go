@@ -156,7 +156,6 @@ func resizeAndCropImage(img image.Image) *image.NRGBA {
 	return resized
 }
 
-// loadImage loads an image from the given path
 func loadImage(path string) (image.Image, error) {
 	f, err := os.Open(path)
 	if err != nil {
@@ -168,7 +167,6 @@ func loadImage(path string) (image.Image, error) {
 	return img, err
 }
 
-// saveBMP saves an image as BMP
 func saveBMP(img image.Image, path string) error {
 	f, err := os.Create(path)
 	if err != nil {
@@ -176,7 +174,6 @@ func saveBMP(img image.Image, path string) error {
 	}
 	defer f.Close()
 
-	// Ensure the image has the right format for BMP
 	bounds := img.Bounds()
 	rgba := image.NewRGBA(bounds)
 	draw.Draw(rgba, bounds, img, bounds.Min, draw.Src)
