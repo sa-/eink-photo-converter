@@ -1,5 +1,7 @@
 # eink-photo-converter
 
+A better converter for the Waveshare Photo Painter (B)
+
 Install
 ```sh
 go install github.com/sa-/eink-photo-converter@latest
