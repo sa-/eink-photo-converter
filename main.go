@@ -79,7 +79,8 @@ func processImages(inDir, outDir string) {
 
 	// Create ditherer
 	d := dither.NewDitherer(palette)
-	d.Matrix = dither.JarvisJudiceNinke
+	d.Matrix = dither.FloydSteinberg
+	d.Serpentine = true
 
 	p, _ := pterm.DefaultProgressbar.WithTotal(len(entries)).WithTitle("Converting images").Start()
 	for _, entry := range entries {
@@ -117,11 +118,11 @@ func processImages(inDir, outDir string) {
 		}
 
 		// terminal output
-		pterm.Printf("Converted %s\n", outPath)
+		pterm.Printf("Converted %s\n", filename)
 		p.Increment()
 	}
 
-	pterm.Success.Printf("Converted from: %s\nto: %s\n\n", inDir, outDir)
+	pterm.Success.Printf("Converted %d photos from:\n  %s\nto:\n  %s\n\n", len(entries), inDir, outDir)
 }
 
 func resizeAndCropImage(img image.Image) *image.NRGBA {
